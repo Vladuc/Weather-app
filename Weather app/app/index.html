@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="pop-up d-none">
+      <div id="overlay">
+        <div id="modal">
+          <div class="close-modal-btn">
+            <ion-icon class="icon-close-popUp" name="close-outline"></ion-icon>
+          </div>
+          <form
+            class="d-flex flex-column justify-content-center align-items-center"
+          >
+            <input placeholder="Enter the city" id="input-pop-up" />
+            <button type="submit" class="pop-up-btn">add</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="my-container">
+      <section class="row">
+        <div class="d-flex col-8 col-lg-4 details-city">
+          <div>
+            <h1 id="City">Oradea, RO</h1>
+            <h2 id="Date">Tuesday 4 April</h2>
+          </div>
+        </div>
+        <div
+          class="d-flex flex-column justify-content-center align-items-center bar col-md-12 col-lg-4"
+        >
+          <form class="search-bar" type="submit">
+            <div>
+              <i class="fa-regular fa-star icon-favorite"></i>
+              <i class="fa-solid fa-star icon-favorite-full d-none"></i>
+            </div>
+
+            <input id="inputValue" placeholder="Search..." type="text" />
+
+            <ion-icon
+              type="submit"
+              class="icon-search"
+              name="search-outline"
+            ></ion-icon>
+          </form>
+          <div class="favorite d-none">
+            <ol id="list">
+              <!-- <li>
+                <p class="city-name">Zalau</p>
+                <span
+                  ><ion-icon class="trash-icon" name="trash-outline"></ion-icon
+                ></span>
+              </li> -->
+            </ol>
+            <div class="d-flex justify-content-center align-items-center">
+              <button class="add-city">Add</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 justify-content-end flex-row grade">
+          <!-- <i class="fa-solid fa-cloud icon-cloud" style="color: #ffffff"></i> -->
+          <div class="weather-icon"><img src="icons/unknown.png" /></div>
+
+          <div class="flex-column d-flex align-items-center">
+            <p class="forecast-day-choice mb-0 temperatureDayChoice">5°C</p>
+            <!-- <h2>Overcast clouds</h2> -->
+          </div>
+        </div>
+      </section>
+      <!------------------------------------->
+      <!-- FORECAST CHOICE -->
+      <!------------------------------------->
+      <section class="row my-row">
+        <div
+          class="col-6 justify-content-center align-items-center hidden-small"
+        >
+          <div class="weather-icon"><img src="icons/unknown.png" /></div>
+          <!-- <i class="fa-solid fa-cloud icon-cloud" style="color: #ffffff"></i> -->
+          <div class="flex-column">
+            <p class="forecast-day-choice mb-0 temperatureDayChoice">5°C</p>
+            <h2 id="descriptionDayChoice">Overcast clouds</h2>
+          </div>
+        </div>
+        <!------------------------------------->
+        <!-- HOURS DETAILS FORECAST -->
+        <!------------------------------------->
+        <div
+          class="col-lg-6 col-md-6 col-sm-12 nohidden-small forecast-hours d-none"
+        >
+          <div
+            class="hours d-flex justify-content-center align-items-center flex-column"
+          >
+            <div class="d-flex flex-column">
+              <div>
+                <p id="hour1-forecast" class="hour-forecast">00:00</p>
+                <div id="img1-hour" class="forecast-weather-icon">
+                  <img src="icons/unknown.png" />
+                </div>
+                <p id="temp1-forecast">5°C</p>
+              </div>
+            </div>
+            <div>
+              <p id="hour5-forecast" class="hour-forecast">06:00</p>
+              <div id="img5-hour" class="forecast-weather-icon">
+                <img src="icons/unknown.png" />
+              </div>
+              <p id="temp5-forecast">5°C</p>
+            </div>
+          </div>
+          <div
+            class="hours d-flex justify-content-center align-items-center flex-column"
+          >
+            <div class="d-flex flex-column">
+              <div>
+                <p id="hour2-forecast" class="hour-forecast">01:00</p>
+                <div id="img2-hour" class="forecast-weather-icon">
+                  <img src="icons/unknown.png" />
+                </div>
+                <p id="temp2-forecast">5°C</p>
+              </div>
+            </div>
+            <div>
+              <p id="hour6-forecast" class="hour-forecast">07:00</p>
+              <div id="img6-hour" class="forecast-weather-icon">
+                <img src="icons/unknown.png" />
+              </div>
+              <p id="temp6-forecast">5°C</p>
+            </div>
+          </div>
+          <div
+            class="hours d-flex justify-content-center align-items-center flex-column"
+          >
+            <div class="d-flex flex-column">
+              <div>
+                <p id="hour3-forecast" class="hour-forecast">02:00</p>
+                <div id="img3-hour" class="forecast-weather-icon">
+                  <img src="icons/unknown.png" />
+                </div>
+                <p id="temp3-forecast">5°C</p>
+              </div>
+            </div>
+            <div>
+              <p id="hour7-forecast" class="hour-forecast">08:00</p>
+              <div id="img7-hour" class="forecast-weather-icon">
+                <img src="icons/unknown.png" />
+              </div>
+              <p id="temp7-forecast">5°C</p>
+            </div>
+          </div>
+          <div
+            class="hours d-flex justify-content-center align-items-center flex-column last-child"
+          >
+            <div class="d-flex flex-column">
+              <div>
+                <p id="hour4-forecast" class="hour-forecast">03:00</p>
+                <div id="img4-hour" class="forecast-weather-icon">
+                  <img src="icons/unknown.png" />
+                </div>
+                <p id="temp4-forecast">5°C</p>
+              </div>
+            </div>
+            <div>
+              <p id="hour8-forecast" class="hour-forecast">09:00</p>
+              <div id="img8-hour" class="forecast-weather-icon">
+                <img src="icons/unknown.png" />
+              </div>
+              <p id="temp8-forecast">5°C</p>
+            </div>
+          </div>
+
+          <i
+            class="fa-solid fa-chevron-right arrow chevron-right"
+            style="color: #000000"
+          ></i>
+          <i
+            class="fa-solid fa-chevron-left arrow chevron-left"
+            style="color: #000000"
+          ></i>
+        </div>
+
+        <!------------------------------------->
+        <!--  DETAILS FORECAST -->
+        <!------------------------------------->
+
+        <div
+          class="col-lg-6 col-md-6 col-sm-12 details-forecast-choice nohidden-small"
+        >
+          <div
+            class="cols-forecast-choice d-flex justify-content-center align-items-center flex-column"
+          >
+            <div>
+              <p id="high-temperature" class="mb-0 main-p-choice">10°C</p>
+              <p class="second-p-choice">Hight</p>
+            </div>
+            <div>
+              <p id="low-temperature" class="mb-0 main-p-choice">0°C</p>
+              <p class="second-p-choice">Low</p>
+            </div>
+          </div>
+          <div
+            class="cols-forecast-choice d-flex justify-content-center align-items-center flex-column"
+          >
+            <div>
+              <p id="windSpeed" class="mb-0 main-p-choice">31mph</p>
+              <p class="second-p-choice">Wind</p>
+            </div>
+            <div>
+              <p id="humidity" class="mb-0 main-p-choice">70%</p>
+              <p class="second-p-choice">Humidity</p>
+            </div>
+          </div>
+          <div
+            class="cols-forecast-choice d-flex justify-content-center align-items-center flex-column last-child"
+          >
+            <div>
+              <p id="sunrise" class="mb-0 main-p-choice">6:40</p>
+              <p class="second-p-choice">Sunrise</p>
+            </div>
+            <div>
+              <p id="sunset" class="mb-0 main-p-choice">19:37</p>
+              <p class="second-p-choice">Sunset</p>
+            </div>
+          </div>
+
+          <i
+            class="fa-solid fa-chevron-left arrow chevron-left"
+            style="color: #000000"
+          ></i>
+          <i
+            class="fa-solid fa-chevron-right arrow chevron-right"
+            style="color: #000000"
+          ></i>
+        </div>
+      </section>
+      <!------------------------------------->
+      <!-- DETAILS FORECAST -->
+      <!------------------------------------->
+      <section class="forecast-days">
+        <h2>Forecast</h2>
+        <div class="days-summary">
+          <div id="col1" class="day">
+            <p id="day1-name" class="col-day">Monday</p>
+            <p id="day1-date" class="cols-date">05.04</p>
+            <div id="day1-icon"><img src="icons/unknown.png" /></div>
+            <p id="day1-°C" class="cols-°C">2°C</p>
+          </div>
+          <div id="col2" class="day">
+            <p id="day2-name" class="col-day">Monday</p>
+            <p id="day2-date" class="cols-date">05.04</p>
+            <div id="day2-icon"><img src="icons/unknown.png" /></div>
+            <p id="day2-°C" class="cols-°C">2°C</p>
+          </div>
+          <div id="col3" class="day">
+            <p id="day3-name" class="col-day">Monday</p>
+
+            <p id="day3-date" class="cols-date">05.04</p>
+            <div id="day3-icon"><img src="icons/unknown.png" /></div>
+            <p id="day3-°C" class="cols-°C">2°C</p>
+          </div>
+          <div id="col4" class="day">
+            <p id="day4-name" class="col-day">Monday</p>
+            <p id="day4-date" class="cols-date">05.04</p>
+            <div id="day4-icon"><img src="icons/unknown.png" /></div>
+            <p id="day4-°C" class="cols-°C">2°C</p>
+          </div>
+          <div id="col5" class="day">
+            <p id="day5-name" class="col-day">Monday</p>
+            <p id="day5-date" class="cols-date">05.04</p>
+            <div id="day5-icon"><img src="icons/unknown.png" /></div>
+            <p id="day5-°C" class="cols-°C">2°C</p>
+          </div>
+          <div id="col6" class="day">
+            <p id="day6-name" class="col-day">Monday</p>
+            <p id="day6-date" class="cols-date">05.04</p>
+            <div id="day6-icon"><img src="icons/unknown.png" /></div>
+            <p id="day6-°C" class="cols-°C">2°C</p>
+          </div>
+          <div id="col7" class="day">
+            <p id="day7-name" class="col-day">Monday</p>
+            <p id="day7-date" class="cols-date">05.04</p>
+            <div id="day7-icon"><img src="icons/unknown.png" /></div>
+            <p id="day7-°C" class="cols-°C">2°C</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- file JS -->
+    <script src="scripts.js"></script>
+    <!-- Bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Icons -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script
+      src="https://kit.fontawesome.com/61d0e8706b.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- sunrise and sunset -->
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+  </body>
+</html>
